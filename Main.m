@@ -27,3 +27,5 @@ medianimg = medfilt2(CLAHEimg);
 %Contrast adjustment
 contrastimg = imadjust(medianimg,stretchlim(medianimg),[]);
 
+%Subploting 
+
