@@ -17,3 +17,5 @@ end
 figure(1)
 stillimg = mov(100).cdata;
 image(stillimg)
+
+y=1;
