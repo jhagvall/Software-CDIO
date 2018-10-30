@@ -6,7 +6,7 @@ vid = VideoReader(videoname);
 vidWidth = vid.Width;
 vidHeight = vid.Height;
 
-mov = struct('cdata',zeros(vidHeight,vidWidth,3,'uint8'),'greyscale',[]);
+mov = struct('cdata',zeros(vidHeight,vidWidth,3,'uint8'),'colormap',[]);
 
 k = 1;
 while hasFrame(vid)
