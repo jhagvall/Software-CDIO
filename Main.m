@@ -21,3 +21,9 @@ imshow(grayimg)
 subplot(1,3,3)
 imshow(CLAHEimg)
 
+%Noise removal using a median filter
+medianimg = medfilt2(CLAHEimg);
+
+%Contrast adjustment
+contrastimg = imadjust(medianimg,stretchlim(medianimg),[]);
+
