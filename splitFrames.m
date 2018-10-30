@@ -1,4 +1,7 @@
-vid = VideoReader('test2_new.mov');
+%Takes a video and a wanted frame as input to return that certain frame of
+%the input video
+function movie =  splitFrames(videoname,frame)
+vid = VideoReader(videoname);
 
 vidWidth = vid.Width;
 vidHeight = vid.Height;
@@ -10,12 +13,5 @@ while hasFrame(vid)
     mov(k).cdata = readFrame(vid);
     k = k+1;
 end
-
-% stillimg = mov.cdata;
-% stillimg = stillimg(100,100,:);
-
-figure(1)
-stillimg = mov(100).cdata;
-image(stillimg)
-
-y=1;
+movie = mov(frame).cdata;
+end
