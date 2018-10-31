@@ -37,14 +37,4 @@ subplot(1,3,3)
 imshow(contrastimg)
 
 %Applying a grid to the image
-figure(3)
-imshow(contrastimg)
-axis on;
-[rows, columns, numberOfColorChannels] = size(contrastimg);
-hold on;
-for row = 1 : 160 : rows
-  line([1, columns], [row, row], 'Color', 'r');
-end
-for col = 1 : 213 : columns
-  line([col, col], [1, rows], 'Color', 'r');
-end
+applyGrid(contrastimg,3)
