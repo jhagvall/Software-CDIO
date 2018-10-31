@@ -16,10 +16,13 @@ CLAHEimg = CLAHE(grayimg);
 figure(1)
 subplot(1,3,1)
 imshow(stillimg)
+title('Origianl image')
 subplot(1,3,2)
 imshow(grayimg)
+title('Grayscale image')
 subplot(1,3,3)
 imshow(CLAHEimg)
+title('CLAHE image')
 
 %Noise removal using a median filter
 medianimg = medfilt2(CLAHEimg);
@@ -31,10 +34,14 @@ contrastimg = imadjust(medianimg,stretchlim(medianimg),[]);
 figure(2)
 subplot(1,3,1)
 imshow(CLAHEimg)
+title('CLAHE image')
 subplot(1,3,2)
 imshow(medianimg)
+title('Median image')
 subplot(1,3,3)
 imshow(contrastimg)
+title('Contrast enhancement')
 
 %Applying a grid to the image
 applyGrid(contrastimg,3)
+title('Contrast image with applied grid')
