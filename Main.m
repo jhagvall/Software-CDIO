@@ -54,10 +54,6 @@ imshow(original_image)
 figure(4)
 imshow(averaged_image)
 
-%Applying a grid to the image
-applyGrid(contrastimg,3)
-title('Contrast image with applied grid')
-
 %% Optional 
 
 averaged_frames = averageFrames('S2ST3306.MOV',1,10);
@@ -70,3 +66,13 @@ title('Original averaged image')
 subplot(1,2,2)
 imshow(enhanced_image)
 title('Enhanced averaged image')
+
+%% De Backers score
+
+%Applying a grid to the image
+applyGrid(enhanced_image,3)
+title('Contrast image with applied grid')
+
+vessels_crossing_lines = 15; %Calculated manually and entered here
+densityofvessels = DeBackers(enhanced_image,3,vessels_crossing_lines,0.005); 
+%Unit is number of vessels/mm 
