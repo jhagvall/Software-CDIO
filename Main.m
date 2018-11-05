@@ -4,7 +4,7 @@
 
 %Using frame 100
 %Extracting frame 100
-stillimg = splitFrames('S2ST3306.MOV',100);
+stillimg = splitFrames('S2ST3306.MOV',50);
 
 %Converting image to gray scale
 grayimg = convert2gray(stillimg);
@@ -32,15 +32,18 @@ contrastimg = imadjust(medianimg,stretchlim(medianimg),[]);
 
 %Subploting of three figures
 figure(2)
-subplot(1,3,1)
+subplot(2,2,1)
 imshow(CLAHEimg)
 title('CLAHE image')
-subplot(1,3,2)
+subplot(2,2,2)
 imshow(medianimg)
 title('Median image')
-subplot(1,3,3)
+subplot(2,2,3)
 imshow(contrastimg)
 title('Contrast enhancement')
+subplot(2,2,4)
+imshow(grayimg)
+title('Original grayscale image')
 
 %Applying a grid to the image
 applyGrid(contrastimg,3)
