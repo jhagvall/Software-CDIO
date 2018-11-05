@@ -45,6 +45,15 @@ subplot(2,2,4)
 imshow(grayimg)
 title('Original grayscale image')
 
+%Average of frames
+original_image = rgb2gray(splitFrames('test2_new.mov',200));
+averaged_image = averageFrames('test2_new.mov',200,5);
+
+figure(3)
+imshow(original_image)
+figure(4)
+imshow(averaged_image)
+
 %Applying a grid to the image
 applyGrid(contrastimg,3)
 title('Contrast image with applied grid')
