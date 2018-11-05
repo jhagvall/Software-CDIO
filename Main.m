@@ -57,3 +57,16 @@ imshow(averaged_image)
 %Applying a grid to the image
 applyGrid(contrastimg,3)
 title('Contrast image with applied grid')
+
+%% Optional 
+
+averaged_frames = averageFrames('S2ST3306.MOV',1,10);
+enhanced_image = imageEnhancement(averaged_frames);
+
+figure(4)
+subplot(1,2,1)
+imshow(averaged_frames)
+title('Original averaged image')
+subplot(1,2,2)
+imshow(enhanced_image)
+title('Enhanced averaged image')
