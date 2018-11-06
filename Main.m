@@ -69,15 +69,6 @@ subplot(1,2,2)
 imshow(enhanced_image)
 title('Enhanced averaged image')
 
-%% De Backers score
-
-%Applying a grid to the image
-applyGrid(enhanced_image,3)
-title('Contrast image with applied grid')
-
-vessels_crossing_lines = 15; %Calculated manually and entered here
-densityofvessels = DeBackers(enhanced_image,3,vessels_crossing_lines,2); 
-%Unit is number of vessels/mm 
 
 %% Segment Image
 
@@ -91,3 +82,14 @@ imshow(segmentimg)
 % Number of non-zero arguments in the image matrix divided by the total
 % amount of pixels (number of pixels widdth* number of pixels height)
 density = nnz(imcomplement(segmentimg))/(size(segmentimg,1)*size(segmentimg,2));
+
+
+%% De Backers score
+
+%Applying a grid to the image
+applyGrid(segmentimg,3)
+title('Contrast image with applied grid')
+
+vessels_crossing_lines = autoCountVessels(segmentimg,3);
+densityofvessels = DeBackers(segmentimg,3,vessels_crossing_lines,2); 
+%Unit is number of vessels/mm 
