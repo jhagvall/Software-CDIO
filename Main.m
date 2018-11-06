@@ -4,7 +4,8 @@
 
 %Using frame 100
 %Extracting frame 100
-stillimg = splitFrames('S2ST3306.MOV',50);
+[movie, frames] = splitFrames('S2ST3306.MOV');
+stillimg = movie(50).cdata;
 
 %Converting image to gray scale
 grayimg = convert2gray(stillimg);
@@ -74,5 +75,5 @@ applyGrid(enhanced_image,3)
 title('Contrast image with applied grid')
 
 vessels_crossing_lines = 15; %Calculated manually and entered here
-densityofvessels = DeBackers(enhanced_image,3,vessels_crossing_lines,0.005); 
+densityofvessels = DeBackers(enhanced_image,3,vessels_crossing_lines,2); 
 %Unit is number of vessels/mm 
