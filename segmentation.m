@@ -25,57 +25,34 @@ grayimg7 = convert2gray(stillimg7);
 grayimg8 = convert2gray(stillimg8);
 grayimg9 = convert2gray(stillimg9);
 
+% Enhance the image
+enhancedimg0 = imageEnhancement(grayimg0);
+enhancedimg1 = imageEnhancement(grayimg1);
+enhancedimg2 = imageEnhancement(grayimg2);
+enhancedimg3 = imageEnhancement(grayimg3);
+enhancedimg4 = imageEnhancement(grayimg4);
+enhancedimg5 = imageEnhancement(grayimg5);
+enhancedimg6 = imageEnhancement(grayimg6);
+enhancedimg7 = imageEnhancement(grayimg7);
+enhancedimg8 = imageEnhancement(grayimg8);
+enhancedimg9 = imageEnhancement(grayimg9);
 
-%Perfomering histogram equalization & bilinear interpolation
-CLAHEimg0 = CLAHE(grayimg0);
-CLAHEimg1 = CLAHE(grayimg1);
-CLAHEimg2 = CLAHE(grayimg2);
-CLAHEimg3 = CLAHE(grayimg3);
-CLAHEimg4 = CLAHE(grayimg4);
-CLAHEimg5 = CLAHE(grayimg5);
-CLAHEimg6 = CLAHE(grayimg6);
-CLAHEimg7 = CLAHE(grayimg7);
-CLAHEimg8 = CLAHE(grayimg8);
-CLAHEimg9 = CLAHE(grayimg9);
-
-
-%Noise removal using a median filter
-medianimg0 = medfilt2(CLAHEimg0);
-medianimg1 = medfilt2(CLAHEimg1);
-medianimg2 = medfilt2(CLAHEimg2);
-medianimg3 = medfilt2(CLAHEimg3);
-medianimg4 = medfilt2(CLAHEimg4);
-medianimg5 = medfilt2(CLAHEimg5);
-medianimg6 = medfilt2(CLAHEimg6);
-medianimg7 = medfilt2(CLAHEimg7);
-medianimg8 = medfilt2(CLAHEimg8);
-medianimg9 = medfilt2(CLAHEimg9);
-
-%Contrast adjustment
-contrastimg0 = imadjust(medianimg0,stretchlim(medianimg0),[]);
-contrastimg1 = imadjust(medianimg1,stretchlim(medianimg1),[]);
-contrastimg2 = imadjust(medianimg2,stretchlim(medianimg2),[]);
-contrastimg3 = imadjust(medianimg3,stretchlim(medianimg3),[]);
-contrastimg4 = imadjust(medianimg4,stretchlim(medianimg4),[]);
-contrastimg5 = imadjust(medianimg5,stretchlim(medianimg5),[]);
-contrastimg6 = imadjust(medianimg6,stretchlim(medianimg6),[]);
-contrastimg7 = imadjust(medianimg7,stretchlim(medianimg7),[]);
-contrastimg8 = imadjust(medianimg8,stretchlim(medianimg8),[]);
-contrastimg9 = imadjust(medianimg9,stretchlim(medianimg9),[]);
 %%
 % Make image binary
 sense = 0.64;
 
-BW0 = makeBinary(contrastimg0, sense);
-BW1 = makeBinary(contrastimg1, sense);
-BW2 = makeBinary(contrastimg2, sense);
-BW3 = makeBinary(contrastimg3, sense);
-BW4 = makeBinary(contrastimg4, sense);
-BW5 = makeBinary(contrastimg5, sense);
-BW6 = makeBinary(contrastimg6, sense);
-BW7 = makeBinary(contrastimg7, sense);
-BW8 = makeBinary(contrastimg8, sense);
-BW9 = makeBinary(contrastimg9, sense);
+BW0 = makeBinary(enhancedimg0, sense);
+BW1 = makeBinary(enhancedimg1, sense);
+BW2 = makeBinary(enhancedimg2, sense);
+BW3 = makeBinary(enhancedimg3, sense);
+BW4 = makeBinary(enhancedimg4, sense);
+BW5 = makeBinary(enhancedimg5, sense);
+BW6 = makeBinary(enhancedimg6, sense);
+BW7 = makeBinary(enhancedimg7, sense);
+BW8 = makeBinary(enhancedimg8, sense);
+BW9 = makeBinary(enhancedimg9, sense);
+
+
 
 % Fill holes
 BWF0 = imfill(BW0, 'holes');
