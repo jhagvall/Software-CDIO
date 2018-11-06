@@ -111,13 +111,16 @@ imshow(BWF0)
 subplot(2,2,4)
 imshow(BWF0R)
 
+figure(2)
+imshowpair(BWF0, binaryAve, 'montage')
+
 
 
 
 %% Calculate density
 
  
-density = nnz(imcomplement(BWF0R))/(size(complement,1)*size(complement,2))
+density = nnz(imcomplement(BWF0R))/(size(BWF0R,1)*size(BWF0R,2))
 
 
 
