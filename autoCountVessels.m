@@ -7,8 +7,12 @@ nrVessels=0;
 for n = round(thewidth/gridsize):round(thewidth/gridsize):round(thewidth/gridsize)*(gridsize-1)
     for m = 1:thelength
         if m == 1
+            if image(m,n) == 0 && image(m+1,n) == 1
+            nrVessels = nrVessels+1;
             continue
-        end  
+            else continue
+            end
+        end
         
         if image(m-1,n) == 0 && image(m,n) == 1
             nrVessels = nrVessels+1;
@@ -20,8 +24,12 @@ end
 for n = round(thelength/gridsize):round(thelength/gridsize):round(thelength/gridsize)*(gridsize-1)
     for m = 1:thewidth
         if m == 1
+            if image(m,n) == 0 && image(m+1,n) == 1
+            nrVessels = nrVessels+1;
             continue
-        end  
+            else continue
+            end
+        end
         
         if image(n,m-1) == 0 && image(n,m) == 1
             nrVessels = nrVessels+1;
