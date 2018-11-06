@@ -104,7 +104,12 @@ imshow(BWF0R)
 %% Calculate density
 
 <<<<<<< HEAD
+<<<<<<< HEAD
  
+=======
+% Number of non-zero arguments in the image matrix divided by the total
+% amount of pixels (number of pixels widdth* number of pixels height)
+>>>>>>> 2a172fef99b4223b775512e676e7310a6c936d14
 =======
 % Number of non-zero arguments in the image matrix divided by the total
 % amount of pixels (number of pixels widdth* number of pixels height)
