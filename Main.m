@@ -47,8 +47,9 @@ imshow(grayimg)
 title('Original grayscale image')
 
 %Average of frames
-original_image = rgb2gray(splitFrames('test2_new.mov',200));
-averaged_image = averageFrames('test2_new.mov',200,5);
+[rgbMovie, frames] = splitFrames('test2_new.mov');
+original_image = rgb2gray(rgbMovie(200).cdata);
+averaged_image = averageFrames(rgbMovie, 200,5);
 
 figure(3)
 imshow(original_image)
@@ -57,7 +58,7 @@ imshow(averaged_image)
 
 %% Optional 
 
-averaged_frames = averageFrames('S2ST3306.MOV',1,10);
+averaged_frames = averageFrames(rgbMovie,1,10);
 enhanced_image = imageEnhancement(averaged_frames);
 
 figure(4)
