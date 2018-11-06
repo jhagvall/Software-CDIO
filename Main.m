@@ -74,5 +74,5 @@ applyGrid(enhanced_image,3)
 title('Contrast image with applied grid')
 
 vessels_crossing_lines = 15; %Calculated manually and entered here
-densityofvessels = DeBackers(enhanced_image,3,vessels_crossing_lines,0.005); 
+densityofvessels = DeBackers(enhanced_image,3,vessels_crossing_lines,2); 
 %Unit is number of vessels/mm 
