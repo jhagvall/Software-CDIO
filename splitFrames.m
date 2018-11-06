@@ -1,6 +1,6 @@
 %Takes a video and a wanted frame as input to return that certain frame of
 %the input video
-function movie =  splitFrames(videoname,frame)
+function [movie,frames] =  splitFrames(videoname)
 vid = VideoReader(videoname);
 
 vidWidth = vid.Width;
@@ -13,5 +13,6 @@ while hasFrame(vid)
     mov(k).cdata = readFrame(vid);
     k = k+1;
 end
-movie = mov(frame).cdata;
+movie = mov;
+frames = k-1;
 end
