@@ -89,7 +89,6 @@ BWF7 = imfill(BW7, 'holes');
 BWF8 = imfill(BW8, 'holes');
 BWF9 = imfill(BW9, 'holes');
 
-
 %% Remove connected pixels
 
 % Inverse the image so the black becomes white and vice versa
@@ -108,8 +107,6 @@ imshowpair(BWF0, BWF0R, 'montage')
 % Count in how many images the pixel is black or white
 binaryAve = pixelAverage(BWF0,BWF1,BWF2,BWF3,BWF4,BWF5,BWF6,BWF7,BWF8,BWF9);
 
-% Show images of original, binary image, binary with filled and the with
-% removed connected pixels
 figure(1)
 subplot(2,2,1)
 imshow(grayimg0)
@@ -120,13 +117,15 @@ imshow(BWF0)
 subplot(2,2,4)
 imshow(BWF0R)
 
+figure(2)
+imshowpair(BWF0, binaryAve, 'montage')
+
 
 
 
 %% Calculate density
 
-% Number of non-zero arguments in the image matrix divided by the total
-% amount of pixels (number of pixels widdth* number of pixels height)
+ 
 density = nnz(imcomplement(BWF0R))/(size(BWF0R,1)*size(BWF0R,2))
 
 
