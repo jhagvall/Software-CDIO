@@ -77,3 +77,16 @@ title('Contrast image with applied grid')
 vessels_crossing_lines = 15; %Calculated manually and entered here
 densityofvessels = DeBackers(enhanced_image,3,vessels_crossing_lines,2); 
 %Unit is number of vessels/mm 
+
+%% Segment Image
+
+segmentimg = segmentImage(contrastimg,0.64);
+
+figure(5)
+imshow(segmentimg)
+
+% Calculate density of vessels
+
+% Number of non-zero arguments in the image matrix divided by the total
+% amount of pixels (number of pixels widdth* number of pixels height)
+density = nnz(imcomplement(segmentimg))/(size(segmentimg,1)*size(segmentimg,2));
