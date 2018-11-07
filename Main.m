@@ -2,9 +2,9 @@
 
 %% Only one frame
 
-%Using frame 100
-%Extracting frame 100
-[movie, frames] = splitFrames('S2ST3306.MOV');
+%Using frame 50
+%Extracting frame 50
+[movie,frames,vidWidth, vidHeight,framerate] = splitFrames('S2ST3306.MOV');
 stillimg = movie(50).cdata;
 
 %Converting image to gray scale
@@ -93,3 +93,41 @@ title('Contrast image with applied grid')
 vessels_crossing_lines = autoCountVessels(segmentimg,3);
 densityofvessels = DeBackers(segmentimg,3,vessels_crossing_lines,2); 
 %Unit is number of vessels/mm 
+
+%% All frames
+%Averageing all frames 
+
+%Number of frames to average
+nbr_ave_frames = 10;
+
+%Averaging all frames with the set number of frames
+averaged_frames = struct('cdata',[]);
+
+for j = 1:nbr_ave_frames:frames
+    temp_ave = averageFrames(movie,j,10);
+    averaged_frames(j).cdata = temp_ave;
+end
+%Deletes all empty cells in the struct
+averaged_frames = averaged_frames(~cellfun(@isempty,{averaged_frames.cdata}));
+
+%Enhance all averaged frames
+
+enhanced_frames = struct('cdata',[]);
+
+for k = 1:length(averaged_frames)
+    temp_enh = imageEnhancement(averaged_frames(k).data);
+    enhanced_frames(k).cdata = temp_enh;
+end
+
+%Segment all processed images
+
+segmented_frames = struct('cdata',[]);
+%Sensitivity for threshold segmentation
+sense = 0.64;
+
+for l = 1:length(averaged_frames)
+    temp_seg = segmentImage(enhanced_frames(l).cdata,sense);
+    segmented_frames(l).cdata = temp_seg;
+end
+
+
