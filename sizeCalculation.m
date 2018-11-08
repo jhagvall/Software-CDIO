@@ -39,6 +39,7 @@ minSpurs = bwmorph(skeleton,'spur',Inf);
 % Show the skeleton with removed spurs and the binary image
 figure(2)
 imshowpair(minSpurs, BW, 'montage')
+title('Skeleton (center of the vessel) and original image')
 
 % Find the pixels of the spur of the skeleton
 [row, col] = find(minSpurs);
