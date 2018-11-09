@@ -1,10 +1,12 @@
 % The main file for the software
 
-%% Only one frame
+%% Splitting frames from video
 
+[movie,frames,vidWidth, vidHeight,framerate] = splitFrames('S2ST3306.MOV');
+
+%% Only one frame
 %Using frame 50
 %Extracting frame 50
-[movie,frames,vidWidth, vidHeight,framerate] = splitFrames('S2ST3306.MOV');
 stillimg = movie(50).cdata;
 
 %Converting image to gray scale
@@ -115,7 +117,7 @@ averaged_frames = averaged_frames(~cellfun(@isempty,{averaged_frames.cdata}));
 enhanced_frames = struct('cdata',[]);
 
 for k = 1:length(averaged_frames)
-    temp_enh = imageEnhancement(averaged_frames(k).data);
+    temp_enh = imageEnhancement(averaged_frames(k).cdata);
     enhanced_frames(k).cdata = temp_enh;
 end
 
