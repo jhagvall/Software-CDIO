@@ -74,7 +74,7 @@ title('Enhanced averaged image')
 
 %% Segment Image
 
-segmentimg = segmentImage(contrastimg,0.64);
+segmentimg = segmentImage(contrastimg,0.64,10000);
 
 figure(5)
 imshow(segmentimg)
@@ -128,7 +128,7 @@ segmented_frames = struct('cdata',[]);
 sense = 0.64;
 
 for l = 1:length(averaged_frames)
-    temp_seg = segmentImage(enhanced_frames(l).cdata,sense);
+    temp_seg = segmentImage(enhanced_frames(l).cdata,sense,10000);
     segmented_frames(l).cdata = temp_seg;
 end
 
