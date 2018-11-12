@@ -1,8 +1,8 @@
 % The main file for the software
 
 %% Splitting frames from video
-
-[movie,frames,vidWidth, vidHeight,framerate] = splitFrames('S2ST3306.MOV');
+% Removed output parameter "frames" since it is unused in the code
+[movie,~,vidWidth, vidHeight,framerate] = splitFrames('S2ST3306.MOV');
 
 %% Only one frame
 %Using frame 50
