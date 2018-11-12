@@ -1,5 +1,6 @@
 function segmentedimg = segmentImage(enhancedimg,sense,pixelremoval)
 
+pixelremoval = round(pixelremoval);
 BW0 = makeBinary(enhancedimg, sense);
 BWF0 = imfill(BW0, 'holes');
 

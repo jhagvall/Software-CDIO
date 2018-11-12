@@ -36,17 +36,19 @@ contrastimg = imadjust(medianimg,stretchlim(medianimg),[]);
 %Subploting of three figures
 figure(2)
 subplot(2,2,1)
-imshow(CLAHEimg)
-title('CLAHE image')
-subplot(2,2,2)
-imshow(medianimg)
-title('Median image')
-subplot(2,2,3)
-imshow(contrastimg)
-title('Contrast enhancement')
-subplot(2,2,4)
 imshow(grayimg)
 title('Original grayscale image')
+subplot(2,2,2)
+imshow(CLAHEimg)
+title('CLAHE image')
+subplot(2,2,3)
+imshow(medianimg)
+title('Median image')
+subplot(2,2,4)
+imshow(contrastimg)
+title('Contrast enhancement')
+
+
 
 %Average of frames
 [rgbMovie, frames] = splitFrames('test2_new.mov');
