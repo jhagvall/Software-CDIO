@@ -18,7 +18,7 @@
 img = movie(100).cdata;
 grayimg = convert2gray(img);
 enhancedimg = imageEnhancement(grayimg);
-BW = segmentImage(enhancedimg, 0.64);
+BW = segmentImage(enhancedimg, 0.64, 10000);
 
 
 %% Calculate the euclidean distance between a pixel and the nearest nonzero 
