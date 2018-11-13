@@ -2,12 +2,12 @@
 
 %% Splitting frames from video
 % Removed output parameter "frames" since it is unused in the code
-[movie,~,vidWidth, vidHeight,framerate] = splitFrames('S2ST3306.MOV');
+[mov,~,vidWidth, vidHeight,framerate] = splitFrames('S2ST3306.MOV');
 
 %% Only one frame
 %Using frame 50
 %Extracting frame 50
-stillimg = movie(50).cdata;
+stillimg = mov(50).cdata;
 
 %Converting image to gray scale
 grayimg = convert2gray(stillimg);
@@ -108,7 +108,7 @@ nbr_ave_frames = 10;
 averaged_frames = struct('cdata',[]);
 
 for j = 1:nbr_ave_frames:frames
-    temp_ave = averageFrames(movie,j,10);
+    temp_ave = averageFrames(mov,j,10);
     averaged_frames(j).cdata = temp_ave;
 end
 %Deletes all empty cells in the struct
