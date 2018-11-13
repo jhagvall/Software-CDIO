@@ -134,4 +134,12 @@ for l = 1:length(averaged_frames)
     segmented_frames(l).cdata = temp_seg;
 end
 
+%% Construct video
 
+enh_movie = constructVideo(enhanced_frames);
+
+%% Play video
+hf = figure;
+set(hf,'position',[480 640 480 250]);
+
+movie(hf,enh_movie,1,framerate)
