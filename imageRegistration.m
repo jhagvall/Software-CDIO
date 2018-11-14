@@ -15,7 +15,7 @@ imshowpair(fixed,moving_registered)
 
 %% Automatic image registration
 
-[video, frames] = splitFrames('sampleimg (Converted).mov');
+[video, frames] = splitFrames('S2ST3306.MOV');
 % Choose the frames to be registered
 moving = rgb2gray(video(50).cdata);
 fixed = rgb2gray(video(550).cdata);
@@ -30,7 +30,7 @@ imshowpair(moving,fixed)
 %optimizer.GradientMagnitudeTolerance = 1*10^(-5);
 %optimizer.MinimumStepLength = 1.5e-4;
 %optimizer.MaximumStepLength = 0.07;
-optimizer.MaximumIterations = 800;
+%optimizer.MaximumIterations = 800;
 % optimizer.RelaxationFactor = 0.5;
 
 % Registers the moving image to the fixed image
