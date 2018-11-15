@@ -38,3 +38,32 @@ movingRegistered = imregister(moving, fixed, 'affine', optimizer,metric);
 
 figure(2)
 imshowpair(fixed, movingRegistered)
+
+%% Image registration for entire video, in progress
+
+[video, frames] = splitFrames('S2ST3306.MOV');
+
+%Select start frame and perform image enhancement
+fixed = imageEnhancement(rgb2gray(video(6).cdata));
+%Create struct to store the registered frames
+registered_frames = struct('cdata',[]);
+
+for n = 7:30 %frames
+    moving = imageEnhancement(rgb2gray(video(n).cdata));
+    [optimizer,metric] = imregconfig('monomodal');
+    movingRegistered = imregister(moving, fixed, 'affine', optimizer,metric);
+    %fixed = movingRegistered; %Another idea
+    registered_frames(n).cdata = movingRegistered;
+end
+
+% Remove empty frames
+registered_frames = registered_frames(~cellfun(@isempty,{registered_frames.cdata}));
+
+% Construct a video
+registered_video = constructVideo(registered_frames);
+
+%Play stabilised video
+hf = figure;
+set(hf,'position',[480 640 640 480]);
+
+movie(hf,registered_video,1,2)
