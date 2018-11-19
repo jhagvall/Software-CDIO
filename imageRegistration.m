@@ -34,7 +34,8 @@ imshowpair(moving,fixed)
 % optimizer.RelaxationFactor = 0.5;
 
 % Registers the moving image to the fixed image
-movingRegistered = imregister(moving, fixed, 'affine', optimizer,metric);
+tform = imregtform(moving, fixed, 'affine', optimizer, metric)
+movingRegistered = imregister(moving, fixed, 'affine', optimizer, metric);
 
 figure(2)
 imshowpair(fixed, movingRegistered)
@@ -51,7 +52,13 @@ registered_frames = struct('cdata',[]);
 for n = 7:30 %frames
     moving = imageEnhancement(rgb2gray(video(n).cdata));
     [optimizer,metric] = imregconfig('monomodal');
-    movingRegistered = imregister(moving, fixed, 'affine', optimizer,metric);
+    tform = imregtform(moving, fixed, 'affine', optimizer, metric)
+    temp = tform.T;
+    if temp(3,1) < 20 && temp(3,2) < 20
+        movingRegistered = imregister(moving, fixed, 'affine', optimizer,metric);
+    else
+        movingRegistered = moving;
+    end
     %fixed = movingRegistered; %Another idea
     registered_frames(n).cdata = movingRegistered;
 end
@@ -62,8 +69,9 @@ registered_frames = registered_frames(~cellfun(@isempty,{registered_frames.cdata
 % Construct a video
 registered_video = constructVideo(registered_frames);
 
+%%
 %Play stabilised video
 hf = figure;
 set(hf,'position',[480 640 640 480]);
 
-movie(hf,registered_video,1,2)
+movie(hf,registered_video,1,5)
