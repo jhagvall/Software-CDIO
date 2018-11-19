@@ -1,49 +1,48 @@
-%% PNG
-
 spot_img = imread('dots2.png');
-spot_gray = rgb2gray(spot_img);
 
-enhanced_spot = imageEnhancement(spot_gray);
-% enhanced_spot = medfilt2(enhanced_spot);
+spot_img = rgb2gray(spot_img);
 
-thresh = multithresh(spot_gray,2);
-valuesMax = [thresh max(spot_gray(:))];
-[quant_spot, index] = imquantize(spot_gray,thresh, valuesMax);
-quant_med = medfilt2(quant_spot);
+A = fft2(double(spot_img)); % compute FFT of the grey image
+A1=fftshift(A); % frequency scaling
 
-% segmentedimg = structureRemoval(quant_spot, 4);
-% segmentedimg = uint8(255 * segmentedimg);
-% 
-% new_spot = imsubtract(quant_spot, segmentedimg);
-% 
-% compimg = imcomplement(quant_spot);
 
-% % Remove objects (groups of white pixels) that are less than "pixelremoval" pixels
-% BWF0Rc = bwareaopen(compimg, pixelremoval);
-% 
-% % Inverse it again to make it look like the original
-% segmentedimg = imcomplement(BWF0Rc);
+% Gaussian Filter Response Calculation
 
-% 
-% bw_spot = makeBinary(spot_gray,0.64);
-% bw_spot_comp = imcomplement(bw_spot);
-% 
-% mask = zeros(size(enhanced_spot));
-% mask(25:end-25,25:end-25) = 1;
-% 
-% bw = activecontour(enhanced_spot,mask,1000);
+[M N]=size(A); % image size
+R=10; % filter size parameter 
+X=0:N-1;
+Y=0:M-1;
+[X Y]=meshgrid(X,Y);
+Cx=0.5*N;
+Cy=0.5*M;
+Lo=exp(-((X-Cx).^2+(Y-Cy).^2)./(2*R).^2);
+Hi=1-Lo; % High pass filter=1-low pass filter
 
-% gradient = imgradient(spot_gray);
-% 
-% se = strel('disk',10);
-% Io = imopen(enhanced_spot,se);
-% figure(1)
-% imshow(Io)
-% title('Opening')
-% 
-% 
-% segment_spot = segmentImage(spot_gray, 0.55, 100);
-% 
-figure, imshowpair(spot_gray,enhanced_spot,'montage')
-figure, imshowpair(spot_gray, quant_spot, 'montage')
-figure, imshowpair(quant_spot, quant_med, 'montage')
+% Filtered image=ifft(filter response*fft(original image))
+
+% K=A1.*Hi;
+% K1=ifftshift(K);
+% B2=ifft2(K1);
+
+J=A1.*Lo;
+J1=ifftshift(J);
+B1=ifft2(J1);
+
+new_img = double(spot_img)./double(B1);
+new_img = real(new_img);
+
+thresh = multithresh(new_img,2);
+valuesMax = [thresh max(new_img(:))];
+[quant_spot, index] = imquantize(new_img,thresh, valuesMax);
+
+BW = makeBinary(quant_spot,0.64);
+
+figure(3)
+imshow(BW)
+
+figure(2)
+imshow(spot_img)
+
+figure(5)
+imshow(new_img)
+figure, imshowpair(spot_img, BW, 'montage')
