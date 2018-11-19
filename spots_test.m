@@ -6,7 +6,7 @@ spot_gray = rgb2gray(spot_img);
 enhanced_spot = imageEnhancement(spot_gray);
 % enhanced_spot = medfilt2(enhanced_spot);
 
-thresh = multithresh(spt_gray,2);
+thresh = multithresh(spot_gray,2);
 valuesMax = [thresh max(spot_gray(:))];
 [quant_spot, index] = imquantize(spot_gray,thresh, valuesMax);
 quant_med = medfilt2(quant_spot);
