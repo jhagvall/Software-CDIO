@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="964421409" file="/Users/bons/Documents/GitHub/Software-CDIO/GUI.prj" location="/Users/bons/Documents/GitHub/Software-CDIO" name="GUI" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="3953551182" file="/Users/bons/Documents/GitHub/Software-CDIO/GUI.prj" location="/Users/bons/Documents/GitHub/Software-CDIO" name="GUI" target="target.mlapps" target-name="Package App">
     <param.appname>GUI</param.appname>
     <param.authnamewatermark>Daniel Bons</param.authnamewatermark>
     <param.email>danbo218@student.liu.se</param.email>
@@ -23,6 +23,9 @@
     <param.output>/Users/bons/Documents/GitHub/Software-CDIO</param.output>
     <param.guid>3fe81c69-f06b-497a-9494-7f917879bc68</param.guid>
     <unset>
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
       <param.icon />
       <param.icons />
       <param.summary />
