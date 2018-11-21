@@ -42,16 +42,16 @@ imshowpair(fixed, movingRegistered)
 
 %% Image registration for entire video, in progress
 
-[video, frames] = splitFrames('S2ST3306.MOV');
+[video, frames] = splitFrames('S2ST3304.MOV');
 
-% %Select start frame and perform image enhancement
-% fixed = imageEnhancement(rgb2gray(video(6).cdata));
+%%
 %Create struct to store the registered frames
 registered_frames = struct('cdata',[]);
 
-step = 10;
+step = 5;
 startframe = 10;
-endframe = 100;
+endframe = 200;
+count = 0;
 
 for m = startframe:step:endframe
     for n = 1:step %frames
@@ -63,30 +63,17 @@ for m = startframe:step:endframe
         % The transform
         tform = imregtform(moving, fixed, 'affine', optimizer, metric);
         temp = tform.T; %Transform matrix
-        if temp(3,1) < 20 && temp(3,2) < 20
+        if temp(3,1) < 7 && temp(3,2) < 7 && temp(3,1) > -7 && temp(3,2) > -7
             movingRegistered = imregister(moving, fixed, 'affine', optimizer,metric);
         else
             movingRegistered = moving;
+            count = count + 1; 
         end
         %fixed = movingRegistered; %Another idea
         registered_frames(m+n).cdata = movingRegistered;
     end
 end
-% 
-% for n = 7:30 %frames
-%     moving = imageEnhancement(rgb2gray(video(n).cdata));
-%     [optimizer,metric] = imregconfig('monomodal');
-%     tform = imregtform(moving, fixed, 'affine', optimizer, metric)
-%     temp = tform.T;
-%     if temp(3,1) < 20 && temp(3,2) < 20
-%         movingRegistered = imregister(moving, fixed, 'affine', optimizer,metric);
-%     else
-%         movingRegistered = moving;
-%     end
-%     %fixed = movingRegistered; %Another idea
-%     registered_frames(n).cdata = movingRegistered;
-% end
-
+count
 % Remove empty frames
 registered_frames = registered_frames(~cellfun(@isempty,{registered_frames.cdata}));
 %%
@@ -98,5 +85,15 @@ registered_video = constructVideo(registered_frames);
 hf = figure;
 set(hf,'position',[480 640 640 480]);
 
-movie(hf,registered_video,1,5)
+movie(hf,registered_video,1,8)
 close all
+
+%% Save the video as a file 
+save bra_video.mat registered_video
+
+%% Load the saved video
+
+S = load('registered_video.mat');
+S = S.registered_video;
+
+
