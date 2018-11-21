@@ -44,28 +44,52 @@ imshowpair(fixed, movingRegistered)
 
 [video, frames] = splitFrames('S2ST3306.MOV');
 
-%Select start frame and perform image enhancement
-fixed = imageEnhancement(rgb2gray(video(6).cdata));
+% %Select start frame and perform image enhancement
+% fixed = imageEnhancement(rgb2gray(video(6).cdata));
 %Create struct to store the registered frames
 registered_frames = struct('cdata',[]);
 
-for n = 7:30 %frames
-    moving = imageEnhancement(rgb2gray(video(n).cdata));
-    [optimizer,metric] = imregconfig('monomodal');
-    tform = imregtform(moving, fixed, 'affine', optimizer, metric)
-    temp = tform.T;
-    if temp(3,1) < 20 && temp(3,2) < 20
-        movingRegistered = imregister(moving, fixed, 'affine', optimizer,metric);
-    else
-        movingRegistered = moving;
+step = 10;
+startframe = 10;
+endframe = 100;
+
+for m = startframe:step:endframe
+    for n = 1:step %frames
+        % Define the fixed frame, will be moved to every 10th frame
+        fixed = imageEnhancement(rgb2gray(video(m).cdata));
+        % Define the moving frame
+        moving = imageEnhancement(rgb2gray(video(m+n).cdata));
+        [optimizer,metric] = imregconfig('monomodal');
+        % The transform
+        tform = imregtform(moving, fixed, 'affine', optimizer, metric);
+        temp = tform.T; %Transform matrix
+        if temp(3,1) < 20 && temp(3,2) < 20
+            movingRegistered = imregister(moving, fixed, 'affine', optimizer,metric);
+        else
+            movingRegistered = moving;
+        end
+        %fixed = movingRegistered; %Another idea
+        registered_frames(m+n).cdata = movingRegistered;
     end
-    %fixed = movingRegistered; %Another idea
-    registered_frames(n).cdata = movingRegistered;
 end
+% 
+% for n = 7:30 %frames
+%     moving = imageEnhancement(rgb2gray(video(n).cdata));
+%     [optimizer,metric] = imregconfig('monomodal');
+%     tform = imregtform(moving, fixed, 'affine', optimizer, metric)
+%     temp = tform.T;
+%     if temp(3,1) < 20 && temp(3,2) < 20
+%         movingRegistered = imregister(moving, fixed, 'affine', optimizer,metric);
+%     else
+%         movingRegistered = moving;
+%     end
+%     %fixed = movingRegistered; %Another idea
+%     registered_frames(n).cdata = movingRegistered;
+% end
 
 % Remove empty frames
 registered_frames = registered_frames(~cellfun(@isempty,{registered_frames.cdata}));
-
+%%
 % Construct a video
 registered_video = constructVideo(registered_frames);
 
@@ -75,3 +99,4 @@ hf = figure;
 set(hf,'position',[480 640 640 480]);
 
 movie(hf,registered_video,1,5)
+close all
