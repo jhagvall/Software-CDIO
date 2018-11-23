@@ -143,3 +143,34 @@ hf = figure;
 set(hf,'position',[480 640 480 250]);
 
 movie(hf,enh_movie,1,framerate)
+
+
+%% Image registration for entire video
+
+[video, frames] = splitFrames('S2ST3304.MOV');
+
+%% 
+% Perform video stabilisation, if many frames are chosen it can take a long
+% time
+
+step = 5;
+startframe = 10;
+endframe = 20;
+
+stabilised_video = videoStabilisation(video,startframe,step,endframe)
+
+%%
+%Play stabilised video
+hf = figure;
+set(hf,'position',[480 640 640 480]);
+
+movie(hf,stabilised_video,1,8)
+close all
+
+%% Save the video as a file 
+save saved_video.mat stabilised_video
+
+%% Load the saved video
+
+S = load('saved_video.mat');
+S = S.stabilised_video;
