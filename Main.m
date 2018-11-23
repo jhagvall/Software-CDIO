@@ -176,3 +176,29 @@ hf = figure;
 set(hf,'position',[480 640 640 480]);
 
 movie(hf,seg_movie,1,10)
+
+%% Spots
+close all
+spot_img = imread('dots2_cropped.png');
+
+spot_img = rgb2gray(spot_img);
+
+norm_img = normalizeImage(spot_img);
+
+segment_img = segmentSpot(norm_img);
+
+[labels, measurements, spotnbr] = constructLabels(segment_img,80);
+
+[dist,mean_dist] = spotDistance(measurements);
+
+allCentroids = [measurements.Centroid];
+centroidsX = allCentroids(1:2:end-1);
+centroidsY = allCentroids(2:2:end);
+
+imshow(spot_img)
+hold on;
+for k = 1 : spotnbr           % Loop through all keeper blobs.
+	% Identify if blob #k is a dime or nickel
+    plot(centroidsX(k)', centroidsY(k)', 'bx', 'MarkerSize', 10, 'LineWidth', 2);
+end
+hold off;
