@@ -177,6 +177,13 @@ set(hf,'position',[480 640 640 480]);
 
 movie(hf,seg_movie,1,10)
 
+%% Find the optimal frame from the segmented video
+
+optimal_frame = pixelAverage2(segmented_frames,480,640,0.4);
+
+figure, imshowpair(optimal_frame,enhanced_frames(5).cdata, 'montage')
+
+
 %% Spots
 close all
 spot_img = imread('dots2_cropped.png');
