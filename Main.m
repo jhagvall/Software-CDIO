@@ -197,8 +197,7 @@ centroidsY = allCentroids(2:2:end);
 
 imshow(spot_img)
 hold on;
-for k = 1 : spotnbr           % Loop through all keeper blobs.
-	% Identify if blob #k is a dime or nickel
+for k = 1 : spotnbr  %Loop through all spots
     plot(centroidsX(k)', centroidsY(k)', 'bx', 'MarkerSize', 10, 'LineWidth', 2);
 end
 hold off;
