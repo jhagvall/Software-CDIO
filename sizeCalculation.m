@@ -60,7 +60,9 @@ end
 % Calculate the average diameter (in pixels) of the vessels and show it in
 % the image
 [~,~, diameterValues] = find(diameter);
-averagediameter = mean(diameterValues);
+pixeldiameter = mean(diameterValues);
+
+averagediameter = pixeldiameter/((size(image,1)+size(image,2))/2)*1000;
 
 % figure(4)
 % imshow(BW)
