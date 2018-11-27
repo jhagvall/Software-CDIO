@@ -5,10 +5,11 @@ function SNR = snrCalculation(img)
 
 % Calculate the mean and standard deviation of the image and from that, the
 % SNR
+img = double(img);
 mu = mean(img(:));
 sigma = std(img(:));
 SNR = 10*log10(mu/sigma);
-
+end
 
 
 
