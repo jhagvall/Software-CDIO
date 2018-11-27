@@ -20,26 +20,45 @@ end
 %% Plot optical flow in every frame - VISA MARCUS
 
 [video, frames] = splitFrames('testing2.MOV');
-%video = load('stab2.mat');
-%video = video.stabilised_video;
 
-opticFlow = opticalFlowHS; %('NoiseThreshold',0.009);
-count = 0;
+F_all = struct('cdata',[]);
+
+opticFlow = opticalFlowHS;
 
 figure(1)
 for n = 1:length(video)
     video_frame = rgb2gray(video(n).cdata);
 
-    flow = estimateFlow(opticFlow,video_frame);
+    flow = estimateFlow(opticFlow,video_frame); %Estimate the flow
     
-    count = count + 1;
     imshow(video_frame)
     hold on
     plot(flow,'ScaleFactor',70) 
     drawnow
+    F = getframe;
+    F_all(n).cdata = F.cdata;
     hold off
 end
 
+%% Construct movie
+
+opflow_movie = constructVideo(F_all);
+
+%% Save movie
+
+save optical_flow.mat opflow_movie
+
+%% Load movie
+
+S = load('optical_flow.mat');
+S = S.opflow_movie;
+
+%%
+hf = figure;
+set(hf,'position',[480 640 640 480]);
+
+movie(hf,S,1,15)
+close all
 
 %% Plot optical flow with stabilised video 
 
@@ -65,7 +84,7 @@ for n = 11:length(video)
     hold off
 end
 
-%% Plot optical flow in every frame
+%% Plot optical flow in every frame, tried to play around a bit with flow matrix
 
 [video, frames] = splitFrames('testing2.MOV');
 
