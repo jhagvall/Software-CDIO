@@ -69,5 +69,6 @@ averagediameter = pixeldiameter/((size(image,1)+size(image,2))/2)*1000;
 % txt = ['Average diameter of the vessels: ' num2str(averageDiameter) ' pixels'];
 % text(4, 0.5, txt)
 
+end
 
 
