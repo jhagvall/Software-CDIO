@@ -1,4 +1,5 @@
 function nrVessels = autoCountVessels(image, gridsize)
+% Input image must be a segmented image (binary)
 
 [thelength thewidth] = size(image);
 nrVessels=0;
