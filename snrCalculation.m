@@ -6,7 +6,8 @@ function SNR = snrCalculation(img, sense, pixelremoval)
 % Calculate the mean and standard deviation of the image and from that, the
 % SNR
 %img_double = double(img);
-enhancedimg = imageEnhancement(img);
+normalizedimg = normalizeVessels(img);
+enhancedimg = imageEnhancement(normalizedimg);
 segmentedimg = segmentImage(enhancedimg, sense, pixelremoval);
 
 % Get the pixels where the vessels are and put them im a matrix from which
