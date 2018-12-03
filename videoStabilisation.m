@@ -8,7 +8,7 @@ count = 0;
 for m = startframe:step:endframe
     for n = 1:step 
         % Define the fixed frame, will be moved to every step-frame
-        fixed = imageEnhancement(rgb2gray(video(m).cdata));
+        fixed = rgb2gray(video(m).cdata);
         % Define the moving frame
         moving = imageEnhancement(rgb2gray(video(m+n).cdata));
         [optimizer,metric] = imregconfig('monomodal');
