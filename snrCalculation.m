@@ -1,4 +1,5 @@
-function SNR = snrCalculation(img, sense, pixelremoval)
+function SNR = snrCalculation(segmentedimg, grayimg)
+%, sense, pixelremoval)
 % Calculation of the signal to noise ratio
 % SNR = µ/σ 
 % µ is the mean of the image and σ the standard deviation
@@ -6,9 +7,9 @@ function SNR = snrCalculation(img, sense, pixelremoval)
 % Calculate the mean and standard deviation of the image and from that, the
 % SNR
 %img_double = double(img);
-normalizedimg = normalizeVessels(img);
-enhancedimg = imageEnhancement(normalizedimg);
-segmentedimg = segmentImage(enhancedimg, sense, pixelremoval);
+% normalizedimg = normalizeVessels(img);
+% enhancedimg = imageEnhancement(normalizedimg);
+% segmentedimg = segmentImage(enhancedimg, sense, pixelremoval);
 
 % Get the pixels where the vessels are and put them im a matrix from which
 % we can get the mean and standard deviation
@@ -20,7 +21,7 @@ if isempty(row)
     SNR = inf;
 else
     for i = 1:length(row)
-        vessels(i) = img(row(i), col(i));
+        vessels(i) = grayimg(row(i), col(i));
     end
     % Make the image a double
     vessels = double(vessels);
