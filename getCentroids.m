@@ -1,4 +1,7 @@
 function getCentroids(spot_img)
+%Plots all centroids by centerpoints of detected pixel clusters in a
+%segmented binary image
+
 norm_img = normalizeImage(spot_img);
 
 segment_img = segmentSpot(norm_img);
@@ -7,9 +10,9 @@ segment_img = segmentSpot(norm_img);
 
 [dist,mean_dist] = spotDistance(measurements);
 
-allCentroids = [measurements.Centroid];
-centroidsX = allCentroids(1:2:end-1);
-centroidsY = allCentroids(2:2:end);
+allCentroids = [measurements.Centroid]; %Extract all centerpoints from labels
+centroidsX = allCentroids(1:2:end-1); %Extracts x-position of centerpoints
+centroidsY = allCentroids(2:2:end); %Extract y-position of centerpoints
 
 f=figure('visible', 'off');
 imshow(spot_img)
