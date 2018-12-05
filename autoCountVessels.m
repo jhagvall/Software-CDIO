@@ -1,5 +1,6 @@
 function nrVessels = autoCountVessels(image, gridsize)
-% Input image must be a segmented image (binary)
+% Performs automatic calculation of the number of vessels crossing grid
+% lines in the binary image "image"
 
 [thelength thewidth] = size(image);
 nrVessels=0;
