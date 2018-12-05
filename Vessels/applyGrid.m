@@ -1,4 +1,6 @@
-% Applies a grid to the image
+% Applies a grid to the image. n is the number of times that the image is
+% divided in both x- and y-direction. Round is used if the number of pixels
+% is not evenly divided by n. 
 function gridimg = applyGrid(image,n)
  figure(100)
  imshow(image)
