@@ -1,21 +1,25 @@
 function [labels,spotMeasurements,nbrSpots] = constructLabels(image,area)
+%Conctructs labels of each segmented pixel cluster in a binary image with an area
+%larger than input area. Returns the label image, measurements of the
+%detected pixel clusters and number of clusters.
+
 BWcomp = imcomplement(image);
 labeledImage = bwlabel(BWcomp, 8);
 
-blobMeasurements = regionprops(labeledImage, image, 'all');
+Measurements = regionprops(labeledImage, image, 'all'); %Extracts measurements form binary image
 
-allBlobAreas = [blobMeasurements.Area];
-allowableAreaIndexes = allBlobAreas > area;
+allAreas = [Measurements.Area]; %Extracts area
+allowableAreaIndexes = allAreas > area;
 
 keeperIndexes = find(allowableAreaIndexes);
-keeperBlobsImage = ismember(labeledImage, keeperIndexes);
+keeperImage = ismember(labeledImage, keeperIndexes); %Extracts all labels with chosen area
 
-new_labeledImage = bwlabel(keeperBlobsImage, 8);
+new_labeledImage = bwlabel(keeperImage, 8);
 
-blobMeasurements = regionprops(new_labeledImage, image, 'all');
-numberOfBlobs = size(blobMeasurements, 1);
+Measurements = regionprops(new_labeledImage, image, 'all');
+nbr = size(Measurements, 1);
 
 labels = new_labeledImage;
-spotMeasurements = blobMeasurements;
-nbrSpots = numberOfBlobs;
+spotMeasurements = Measurements;
+nbrSpots = nbr;
 end

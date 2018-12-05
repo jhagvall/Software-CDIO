@@ -2,8 +2,8 @@ function nrVessels = autoCountVessels(image, gridsize)
 % Performs automatic calculation of the number of vessels crossing grid
 % lines in the binary image "image"
 
-[thelength thewidth] = size(image);
-nrVessels=0;
+[thelength thewidth] = size(image); % The length and width of the image in pixels
+nrVessels = 0;
 
 %Vertical lines
 for n = round(thewidth/gridsize):round(thewidth/gridsize):round(thewidth/gridsize)*(gridsize-1)

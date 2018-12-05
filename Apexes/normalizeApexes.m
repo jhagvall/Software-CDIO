@@ -1,10 +1,12 @@
 function normalizedimg = normalizeApexes(image)
+%Normalizes the illumination of an input image by dividing with a low pass
+%filterd version of the image. Returns the normalized image.
 
 A=fft2(double(image)); 
 A1=fftshift(A); 
 
 [M N]=size(A); 
-R=10; % filter size parameter 
+R=10; %Filter size parameter 
 X=0:N-1;
 Y=0:M-1;
 [X Y]=meshgrid(X,Y);
