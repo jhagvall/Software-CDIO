@@ -1,4 +1,6 @@
 function segment_spot = segmentSpot(image)
+%Segment the input image by multi grayscale thresholds and image quantization and
+%returns the segmented image.
 
 thresh = multithresh(image,2);
 valuesMax = [thresh max(image(:))];
