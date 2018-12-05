@@ -1,4 +1,6 @@
 function segmentedimg = segmentImage(enhancedimg,sense,pixelremoval)
+%Creates a binary segmented image, fill holes and removes objects smaller than
+%the input pixelremoval. Returns the segmented image.  
 
 pixelremoval = round(pixelremoval);
 BW0 = makeBinary(enhancedimg, sense);
