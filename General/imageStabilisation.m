@@ -1,4 +1,6 @@
 function registered_frame = imageStabilisation(video,frame1,frame2)
+%Performs image registration between two input frames in a video. Returns
+%the new registered frame.
 
 % Choose the frames to be registered
 moving = rgb2gray(video(frame1).cdata);
