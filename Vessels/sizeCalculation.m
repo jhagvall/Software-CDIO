@@ -1,17 +1,10 @@
 function averagediameter = sizeCalculation(image)
-%%%%%%% Calculate the size of the objects
-% 
-% Input is an image. 
-% This function calculates the average diameter of the vessels in µm. 
+%Calculate the average diameter in �m of the objects in the binary 
+%input image and returns the average diameter
+
 % The calculation will only be correct if the field of view is 1 mm^2
-%
-%%%%%%%
 
 
-
-
-%% Calculate the euclidean distance between a pixel and the nearest nonzero 
-% pixel in the binary image
 % Calculate the euclidean distance transform of the binary image
 D = bwdist(image);
 % Extract the skeleton of the binary image
@@ -43,8 +36,6 @@ pixeldiameter = mean(diameterValues);
 % which means that pixeldiameter/(mean of the height and width) should give
 % the diameter in mm. Multiply by 1000 to get the unit µm
 averagediameter = pixeldiameter/((size(image,1)+size(image,2))/2)*1000;
-
-
 
 end
 
