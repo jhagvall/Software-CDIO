@@ -1,4 +1,8 @@
 function output_img = pixelAverage2(image_struct,vidHeight,vidWidth,limit)
+%Takes a struct with several segmented images and returns a binary image
+%with pixels classified after what they appear as most frequently in each
+%frame of the struct.
+
 ave_img = zeros([vidHeight vidWidth]);
 % Calculates the average binary pixel values
 for i = 1:length(image_struct)
