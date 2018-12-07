@@ -21,12 +21,12 @@ applyGrid(segment_image,4);
 title('Automatically calculated, number of vessels crossing grid lines = 36')
 % De backers
 
-auto_density = DeBackers(enhanced_image,4,auto_nr,1);
-manual_density = DeBackers(enhanced_image,4,38,1);
+auto_density = DeBackers(enhanced_image,4,auto_nr,2);
+manual_density = DeBackers(enhanced_image,4,38,2);
 
 %% Test 24 - De Backer on acquired image
 
-im = imread('test1.png');
+im = imread('test_5_nailfold_littlefinger_OF_12.png');
 
 remove_channel = removeChannel(im);
 gray_image = rgb2gray(remove_channel);
@@ -36,15 +36,24 @@ segment_image = segmentImage(enhanced_image,0.64,10000);
 
 figure,imshowpair(enhanced_image,segment_image,'montage')
 %%
+% Extract the skeleton of the binary image
+skeleton = bwmorph(imcomplement(segment_image), 'skel', inf);
+
+% Remove the spurs from the skeleton (the small branch points) which is not
+% actually part of the diameter of the vessels
+minSpurs = bwmorph(skeleton,'spur',Inf);
+%%
+figure, imshow(minSpurs)
+%%
 
 %Manually
 applyGrid(enhanced_image,4);
-title('Manually calculated, number of vessels crossing grid lines = 42')
+title('Manually calculated, number of vessels crossing grid lines = 19')
 %%
 %Automatic
 auto_nr = autoCountVessels(segment_image,4);
 applyGrid(segment_image,4);
-title('Automatically calculated, number of vessels crossing grid lines = 36')
+title('Automatically calculated, number of vessels crossing grid lines = 65')
 
 
 %% Test nr 32
