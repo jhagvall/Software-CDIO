@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="3962401316" file="/Users/bons/Documents/GitHub/Software-CDIO/GUI/MIT18.prj" location="/Users/bons/Documents/GitHub/Software-CDIO/GUI" name="MIT18" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="3805737205" file="/Users/bons/Documents/GitHub/Software-CDIO/GUI/MIT18.prj" location="/Users/bons/Documents/GitHub/Software-CDIO/GUI" name="MIT18" target="target.mlapps" target-name="Package App">
     <param.appname>MIT18</param.appname>
     <param.authnamewatermark>Daniel Bons</param.authnamewatermark>
     <param.email>danbo218@student.liu.se</param.email>
