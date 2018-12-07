@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="887411421" file="/Users/bons/Documents/GitHub/Software-CDIO/MIT18.prj" location="/Users/bons/Documents/GitHub/Software-CDIO" name="MIT18" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="3962401316" file="/Users/bons/Documents/GitHub/Software-CDIO/GUI/MIT18.prj" location="/Users/bons/Documents/GitHub/Software-CDIO/GUI" name="MIT18" target="target.mlapps" target-name="Package App">
     <param.appname>MIT18</param.appname>
     <param.authnamewatermark>Daniel Bons</param.authnamewatermark>
     <param.email>danbo218@student.liu.se</param.email>
@@ -8,23 +8,14 @@
     <param.icons />
     <param.summary />
     <param.description />
-    <param.screenshot>/private/var/folders/f_/xdbqp9wx18j00yzjf5vtwwn80000gn/T/tpab4333c0_d452_4854_a61d_879950cd01ce.png</param.screenshot>
+    <param.screenshot>/private/var/folders/f_/xdbqp9wx18j00yzjf5vtwwn80000gn/T/tp26b2a8bf_76d6_43c7_ad49_5b97017c57f1.png</param.screenshot>
     <param.version>1.0</param.version>
-    <param.products.name>
-      <item>Image Acquisition Toolbox</item>
-      <item>Image Processing Toolbox</item>
-    </param.products.name>
-    <param.products.id>
-      <item>78</item>
-      <item>17</item>
-    </param.products.id>
-    <param.products.version>
-      <item>5.5</item>
-      <item>10.3</item>
-    </param.products.version>
+    <param.products.name />
+    <param.products.id />
+    <param.products.version />
     <param.platforms />
-    <param.output>/Users/bons/Documents/GitHub/Software-CDIO</param.output>
-    <param.guid>504e583a-b979-471a-b25d-b84d11196d45</param.guid>
+    <param.output>/Users/bons/Documents/GitHub/Software-CDIO/GUI</param.output>
+    <param.guid>683dac04-b49b-4607-bc5f-f9506d218810</param.guid>
     <unset>
       <param.authnamewatermark />
       <param.email />
@@ -34,44 +25,48 @@
       <param.summary />
       <param.description />
       <param.version />
+      <param.products.name />
+      <param.products.id />
+      <param.products.version />
       <param.platforms />
       <param.output />
     </unset>
     <fileset.main>
-      <file>${PROJECT_ROOT}/CDIO18.mlapp</file>
+      <file>${PROJECT_ROOT}/MIT18.mlapp</file>
     </fileset.main>
     <fileset.depfun>
-      <file>${PROJECT_ROOT}/DeBackers.m</file>
-      <file>${PROJECT_ROOT}/PPV.m</file>
-      <file>${PROJECT_ROOT}/PVD.m</file>
-      <file>${PROJECT_ROOT}/autoCountVessels.m</file>
-      <file>${PROJECT_ROOT}/constructLabels.m</file>
-      <file>${PROJECT_ROOT}/constructVideo.m</file>
-      <file>${PROJECT_ROOT}/convert2gray.m</file>
-      <file>${PROJECT_ROOT}/densityCalculation.m</file>
-      <file>${PROJECT_ROOT}/getCentroids.m</file>
-      <file>${PROJECT_ROOT}/homomorph.m</file>
-      <file>${PROJECT_ROOT}/imageEnhancement.m</file>
-      <file>${PROJECT_ROOT}/imageStabilisation.m</file>
-      <file>${PROJECT_ROOT}/ipdm.m</file>
-      <file>${PROJECT_ROOT}/makeBinary.m</file>
-      <file>${PROJECT_ROOT}/normalizeApexes.m</file>
-      <file>${PROJECT_ROOT}/normalizeImage.m</file>
-      <file>${PROJECT_ROOT}/normalizeVessels.m</file>
-      <file>${PROJECT_ROOT}/optical_flow_short.mat</file>
-      <file>${PROJECT_ROOT}/pixelAverage2.m</file>
-      <file>${PROJECT_ROOT}/segmentImage.m</file>
-      <file>${PROJECT_ROOT}/segmentSpot.m</file>
-      <file>${PROJECT_ROOT}/sizeCalculation.m</file>
-      <file>${PROJECT_ROOT}/snrCalculation.m</file>
-      <file>${PROJECT_ROOT}/splitFrames.m</file>
-      <file>${PROJECT_ROOT}/spotDistance.m</file>
-      <file>${PROJECT_ROOT}/videoStabilisation.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Apexes/constructLabels.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Apexes/getCentroids.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Apexes/ipdm.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Apexes/normalizeApexes.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Apexes/segmentSpot.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Apexes/spotDistance.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/General/constructVideo.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/General/convert2gray.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/General/densityCalculation.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/General/imageStabilisation.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/General/makeBinary.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/General/pixelAverage2.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/General/removeChannel.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/General/snrCalculation.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/General/splitFrames.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/General/videoStabilisation.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Obsolete/normalizeImage.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Vessels/DeBackers.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Vessels/PPV.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Vessels/PVD.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Vessels/autoCountVessels.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Vessels/homomorph.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Vessels/imageEnhancement.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Vessels/normalizeVessels.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Vessels/optical_flow_short.mat</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Vessels/segmentImage.m</file>
+      <file>/Users/bons/Documents/GitHub/Software-CDIO/Vessels/sizeCalculation.m</file>
     </fileset.depfun>
     <fileset.resources />
     <fileset.package />
     <build-deliverables>
-      <file location="/Users/bons/Documents/GitHub" name="Software-CDIO" optional="false">/Users/bons/Documents/GitHub/Software-CDIO</file>
+      <file location="/Users/bons/Documents/GitHub/Software-CDIO" name="GUI" optional="false">/Users/bons/Documents/GitHub/Software-CDIO/GUI</file>
     </build-deliverables>
     <workflow />
     <matlab>
